@@ -12,8 +12,8 @@ class MainViewController: UIViewController {
     private let nameLabel: UILabel = {
        let label = UILabel()
         label.text = "Crypto Track"
-        label.font = .robotBold20()
-        label.textColor = .black
+        label.font = .robotoBold48()
+        label.textColor = .darkGray
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -75,10 +75,12 @@ class MainViewController: UIViewController {
         
         setupViews()
         setupConstraints()
+        setupDelegates()
     }
 
     private func setupViews() {
         view.backgroundColor = .specialBackgroundColor
+        view.addSubview(nameLabel)
         view.addSubview(backgroundView)
         stackView = UIStackView(arrangedSubviews: [cryptoLabel, priceLabel, currencyLabel], axis: .horizontal, spacing: 80)
         stackView.contentMode = .scaleAspectFill
@@ -86,7 +88,10 @@ class MainViewController: UIViewController {
         view.addSubview(curencysPicker)
     }
     
-    
+    private func setupDelegates() {
+        curencysPicker.delegate = self
+        curencysPicker.dataSource = self
+    }
     
 }
 
@@ -95,9 +100,13 @@ class MainViewController: UIViewController {
 extension MainViewController {
     
     private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
         
         NSLayoutConstraint.activate([
-            backgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 150),
+            backgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 250),
             backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             backgroundView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2)
@@ -114,6 +123,22 @@ extension MainViewController {
             curencysPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50)
         ])
         
+    }
+}
+
+//MARK: - UIPickerViewDelegate, UIPickerViewDataSource
+
+extension MainViewController: UIPickerViewDelegate {
+    
+}
+
+extension MainViewController: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        2
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        2
     }
     
     
