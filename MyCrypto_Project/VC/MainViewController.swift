@@ -83,6 +83,7 @@ class MainViewController: UIViewController {
         stackView = UIStackView(arrangedSubviews: [cryptoLabel, priceLabel, currencyLabel], axis: .horizontal, spacing: 80)
         stackView.contentMode = .scaleAspectFill
         view.addSubview(stackView)
+        view.addSubview(curencysPicker)
     }
     
     
@@ -107,6 +108,11 @@ extension MainViewController {
             stackView.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor)
         ])
         
+        NSLayoutConstraint.activate([
+            curencysPicker.topAnchor.constraint(equalTo: backgroundView.bottomAnchor, constant: 100),
+            curencysPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            curencysPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50)
+        ])
         
     }
     
