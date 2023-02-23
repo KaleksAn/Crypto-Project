@@ -17,6 +17,10 @@
 		D82D900729A6C75A0030ED13 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D82D900529A6C75A0030ED13 /* Roboto-Medium.ttf */; };
 		D82D900929A6C7CC0030ED13 /* Fonts + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D900829A6C7CC0030ED13 /* Fonts + Extension.swift */; };
 		D82D900B29A6C8F40030ED13 /* UIStackView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82D900A29A6C8F40030ED13 /* UIStackView + Extension.swift */; };
+		D8D3959329A777A4008F8B23 /* JsonStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D3959229A777A4008F8B23 /* JsonStruct.swift */; };
+		D8D3959529A7794D008F8B23 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D3959429A7794D008F8B23 /* NetworkService.swift */; };
+		D8D3959729A77F07008F8B23 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D3959629A77F07008F8B23 /* DataManager.swift */; };
+		D8D3959929A7872E008F8B23 /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D3959829A7872E008F8B23 /* CoinModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,10 @@
 		D82D900529A6C75A0030ED13 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		D82D900829A6C7CC0030ED13 /* Fonts + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Fonts + Extension.swift"; sourceTree = "<group>"; };
 		D82D900A29A6C8F40030ED13 /* UIStackView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView + Extension.swift"; sourceTree = "<group>"; };
+		D8D3959229A777A4008F8B23 /* JsonStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonStruct.swift; sourceTree = "<group>"; };
+		D8D3959429A7794D008F8B23 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		D8D3959629A77F07008F8B23 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		D8D3959829A7872E008F8B23 /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +113,8 @@
 		D82D8FFE29A6C47E0030ED13 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D8D3959229A777A4008F8B23 /* JsonStruct.swift */,
+				D8D3959829A7872E008F8B23 /* CoinModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -112,6 +122,8 @@
 		D82D8FFF29A6C4950030ED13 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				D8D3959429A7794D008F8B23 /* NetworkService.swift */,
+				D8D3959629A77F07008F8B23 /* DataManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -207,11 +219,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8D3959929A7872E008F8B23 /* CoinModel.swift in Sources */,
 				D82D8FEC29A6C3D20030ED13 /* MainViewController.swift in Sources */,
 				D82D900229A6C6130030ED13 /* UIColor + Extensions.swift in Sources */,
+				D8D3959529A7794D008F8B23 /* NetworkService.swift in Sources */,
 				D82D8FE829A6C3D20030ED13 /* AppDelegate.swift in Sources */,
 				D82D900B29A6C8F40030ED13 /* UIStackView + Extension.swift in Sources */,
 				D82D900929A6C7CC0030ED13 /* Fonts + Extension.swift in Sources */,
+				D8D3959329A777A4008F8B23 /* JsonStruct.swift in Sources */,
+				D8D3959729A77F07008F8B23 /* DataManager.swift in Sources */,
 				D82D8FEA29A6C3D20030ED13 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,7 +363,7 @@
 		D82D8FF929A6C3D30030ED13 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = Icons;
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;

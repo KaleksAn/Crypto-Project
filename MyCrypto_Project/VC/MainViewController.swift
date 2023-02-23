@@ -9,6 +9,9 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    let sdsd = Datamanager()
+    private var coin = Coin()
+    
     private let nameLabel: UILabel = {
        let label = UILabel()
         label.text = "Crypto Track"
@@ -76,6 +79,7 @@ class MainViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupDelegates()
+        sdsd.getModel(for: "ETC", and: "USD")
     }
 
     private func setupViews() {
@@ -133,13 +137,34 @@ extension MainViewController: UIPickerViewDelegate {
 }
 
 extension MainViewController: UIPickerViewDataSource {
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        2
+        coin.assets.count
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        2
+        switch component {
+        case 0:
+            return coin.assets[1].count
+        case 1:
+            return coin.assets[0].count
+        default:
+            return 0
+        }
     }
     
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch component {
+        case 0:
+            return coin.assets[1][row]
+        case 1:
+            return coin.assets[0][row]
+        default:
+            return "None"
+
+        }
+    }
     
 }
+    
+    
