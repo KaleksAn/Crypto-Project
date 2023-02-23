@@ -29,9 +29,21 @@ class Coin {
         rate = 0.0
     }
     
-    let assets = [
-        ["USD", "EUR", "GBP", "RUB", "CAD", "NZD", "AUD", "CNY", "HKD", "JPY", "BRL", "IDR", "ILS", "INR", "MXN", "NOK", "PLN", "RON", "SEK", "SGD", "ZAR", "KRW"],
-        ["BTC", "ETH", "ETC", "USDT", "USDC", "BNB", "BUSD", "XRP", "ADA", "SOL", "DOGE", "DOT", "DAI", "MATIC", "SHIB", "TRX", "AVAX", "LEO", "LTC", "XLM", "BCH"]
-    ]
+    let assets = [ CurrencyValue.allValues, CryptoValue.allValues ]
     
 }
+
+
+//MARK: - Enums Value
+  fileprivate  enum CurrencyValue: String, CaseIterable {
+        case USD, EUR, KRW, RUB, JPY
+        static let allValues: [String] = CurrencyValue.allCases.map { $0.rawValue }
+    }
+
+  fileprivate  enum CryptoValue: String, CaseIterable {
+        case BTC, ETH, ETC, USDT, USDC, BNB, BUSD, XRP, ADA, SOL, DOGE, DOT, DAI, MATIC, SHIB, TRX, AVAX, LEO, LTC, XLM, BCH
+        static let allValues: [String] = CryptoValue.allCases.map { $0.rawValue }
+    }
+
+
+

@@ -79,7 +79,8 @@ class MainViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupDelegates()
-        sdsd.getModel(for: "ETC", and: "USD")
+        sdsd.getModel(for: "BTC", and: "USD")
+        
     }
 
     private func setupViews() {
@@ -162,6 +163,17 @@ extension MainViewController: UIPickerViewDataSource {
         default:
             return "None"
 
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        switch component {
+        case 0:
+             coin.assets[1][row]
+        case 1:
+             coin.assets[0][row]
+        default:
+            break
         }
     }
     
