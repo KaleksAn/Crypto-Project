@@ -12,6 +12,9 @@ class MainViewController: UIViewController {
     private let dataManager = Datamanager()
     private var coinModel = Coin()
     
+    private var criptoIndex = 0
+    private var currencyIndex = 0
+    
     private let nameLabel: UILabel = {
        let label = UILabel()
         label.text = "Crypto Track"
@@ -82,14 +85,15 @@ class MainViewController: UIViewController {
         setupConstraints()
         setupDelegates()
         setupDelegates()
-        let _ = dataManager.getModel(for: "BTC", and: "USD")
+        let _ = dataManager.getModel(for: coinModel.assets[1][criptoIndex],
+                                     and: coinModel.assets[0][currencyIndex])
     }
 
     private func setupViews() {
         view.backgroundColor = .specialBackgroundColor
         view.addSubview(nameLabel)
         view.addSubview(backgroundView)
-        stackView = UIStackView(arrangedSubviews: [cryptoLabel, priceLabel, currencyLabel], axis: .horizontal, spacing: 80)
+        stackView = UIStackView(arrangedSubviews: [cryptoLabel, priceLabel, currencyLabel], axis: .horizontal, spacing: 50)
         stackView.contentMode = .scaleAspectFill
         view.addSubview(stackView)
         view.addSubview(curencysPicker)
@@ -115,8 +119,8 @@ extension MainViewController {
         
         NSLayoutConstraint.activate([
             backgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 250),
-            backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             backgroundView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2)
         ])
         
@@ -170,19 +174,19 @@ extension MainViewController: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-        var cryptoCoin = "BTC"
-        var currencyCoin = "USD"
-        
         switch component {
         case 0:
-            cryptoCoin = coinModel.assets[1][row]
+            criptoIndex = row
+            let _ = dataManager.getModel(for: coinModel.assets[1][criptoIndex],
+                                         and: coinModel.assets[0][currencyIndex])
+            
         case 1:
-            currencyCoin = coinModel.assets[0][row]
+            currencyIndex = row
+            let _ = dataManager.getModel(for: coinModel.assets[1][criptoIndex],
+                                         and: coinModel.assets[0][currencyIndex])
         default:
             break
         }
-        let _ = dataManager.getModel(for: cryptoCoin, and: currencyCoin)
     }
     
 }
