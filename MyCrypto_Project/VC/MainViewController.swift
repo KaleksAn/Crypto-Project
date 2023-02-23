@@ -9,8 +9,8 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    let sdsd = Datamanager()
-    private var coin = Coin()
+    private let dataManager = Datamanager()
+    private var coinModel = Coin()
     
     private let nameLabel: UILabel = {
        let label = UILabel()
@@ -46,6 +46,8 @@ class MainViewController: UIViewController {
         label.text = "0"
         label.textColor = .white
         label.font = .robotBold20()
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -79,8 +81,8 @@ class MainViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupDelegates()
-        sdsd.getModel(for: "BTC", and: "USD")
-        
+        setupDelegates()
+        let _ = dataManager.getModel(for: "BTC", and: "USD")
     }
 
     private func setupViews() {
@@ -96,8 +98,9 @@ class MainViewController: UIViewController {
     private func setupDelegates() {
         curencysPicker.delegate = self
         curencysPicker.dataSource = self
+        dataManager.delegate = self
     }
-    
+   
 }
 
 //MARK: - Setup Constraints
@@ -112,8 +115,8 @@ extension MainViewController {
         
         NSLayoutConstraint.activate([
             backgroundView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 250),
-            backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             backgroundView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.2)
         ])
         
@@ -140,15 +143,15 @@ extension MainViewController: UIPickerViewDelegate {
 extension MainViewController: UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        coin.assets.count
+        coinModel.assets.count
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch component {
         case 0:
-            return coin.assets[1].count
+            return coinModel.assets[1].count
         case 1:
-            return coin.assets[0].count
+            return coinModel.assets[0].count
         default:
             return 0
         }
@@ -157,9 +160,9 @@ extension MainViewController: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch component {
         case 0:
-            return coin.assets[1][row]
+            return coinModel.assets[1][row]
         case 1:
-            return coin.assets[0][row]
+            return coinModel.assets[0][row]
         default:
             return "None"
 
@@ -167,16 +170,42 @@ extension MainViewController: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        var cryptoCoin = "BTC"
+        var currencyCoin = "USD"
+        
         switch component {
         case 0:
-             coin.assets[1][row]
+            cryptoCoin = coinModel.assets[1][row]
         case 1:
-             coin.assets[0][row]
+            currencyCoin = coinModel.assets[0][row]
         default:
             break
         }
+        let _ = dataManager.getModel(for: cryptoCoin, and: currencyCoin)
     }
     
 }
     
+//MARK: - Set CoinManagerDelegate
+
+extension MainViewController: CoinManagerDelegate {
     
+    func updateValues(manager: Datamanager, coin: Coin) {
+        coinModel = coin
+        cryptoLabel.text = coinModel.crypto
+        currencyLabel.text = coinModel.currency
+        priceLabel.text = numberFormat(number: coinModel.rate)
+    }
+    
+    private func numberFormat(number: Double) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.minimumFractionDigits = 0
+        numberFormatter.maximumFractionDigits = 2
+        return numberFormatter.string(from: number as NSNumber) ?? "0"
+    }
+    
+}
+
+
+

@@ -37,13 +37,17 @@ class Coin {
 //MARK: - Enums Value
   fileprivate  enum CurrencyValue: String, CaseIterable {
         case USD, EUR, KRW, RUB, JPY
-        static let allValues: [String] = CurrencyValue.allCases.map { $0.rawValue }
+      
+      static var allValues: [String] {
+          return CurrencyValue.allCases.map { $0.rawValue }
+      }
     }
 
-  fileprivate  enum CryptoValue: String, CaseIterable {
-        case BTC, ETH, ETC, USDT, USDC, BNB, BUSD, XRP, ADA, SOL, DOGE, DOT, DAI, MATIC, SHIB, TRX, AVAX, LEO, LTC, XLM, BCH
-        static let allValues: [String] = CryptoValue.allCases.map { $0.rawValue }
+fileprivate  enum CryptoValue: String, CaseIterable {
+    case BTC, ETH, ETC, USDT, USDC, BNB, BUSD, XRP, ADA, SOL, DOGE, DOT, DAI, MATIC, SHIB, TRX, AVAX, LEO, LTC, XLM, BCH
+    
+    static var allValues: [String] {
+        return CryptoValue.allCases.map { $0.rawValue
+        }
     }
-
-
-
+}
