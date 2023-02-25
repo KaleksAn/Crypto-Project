@@ -47,7 +47,6 @@ fileprivate  enum CryptoValue: String, CaseIterable {
     case BTC, ETH, ETC, USDT, USDC, BNB, BUSD, XRP, ADA, SOL, DOGE, DOT, DAI, MATIC, SHIB, TRX, AVAX, LEO, LTC, XLM, BCH
     
     static var allValues: [String] {
-        return CryptoValue.allCases.map { $0.rawValue
-        }
+        return CryptoValue.allCases.map { $0.rawValue }
     }
 }
